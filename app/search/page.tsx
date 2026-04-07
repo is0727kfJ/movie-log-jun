@@ -1,18 +1,19 @@
 import Link from "next/link";
-import { searchMovies, getPopularMovies } from "../lib/tmdb"; // 作成した関数をインポート (パスをapp/lib/tmdbに変更)
+import { searchMovies, getPopularMovies } from "../lib/tmdb"; 
 
-// ページコンポーネントはURLのsearchParamsをpropsとして受け取れる
+// 1. searchParams を Promise で包むように修正
 interface SearchPageProps {
-  searchParams: {
-    query: string;
-  };
+  searchParams: Promise<{
+    query?: string; // queryは存在しない場合もあるので ? をつけるのが安全です
+  }>;
 }
 
+// コンポーネント自体は今の async のままで完璧です！
 export default async function SearchPage({ searchParams }: SearchPageProps) {
+  // 2. await して中身を取り出す（ここも今のままでOK！）
   const { query } = await searchParams;
 
   let movies;
-  // queryが存在すれば検索を、なければ人気の映画を取得
   if (query) {
     movies = await searchMovies(query);
   } else {
@@ -30,7 +31,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
           "人気の映画"
         )}
       </h1>
-      {/* 検索結果の表示 */}
+      {/* 検索結果の表示部分*/}
       {movies && movies.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {movies.map((movie: any) => (

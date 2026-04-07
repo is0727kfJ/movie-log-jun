@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PrismaClient } from '@prisma/client';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from "@/app/lib/auth"; 
 import ReviewForm from '@/app/components/ReviewForm';
 import type { Review, User } from '@prisma/client';
 
@@ -40,7 +40,7 @@ async function getMovieCredits(id: string) {
 }
 
 // ページコンポーネント
-export default async function MovieDetailPage({ params }: { params: { id: string } }) {
+export default async function MovieDetailPage({ params }:{ params: Promise<{ id: string }> }) {
   const { id } = await params; // paramsからidを取得
 
   // 必要なデータを並行して取得
