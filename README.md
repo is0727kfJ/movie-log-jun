@@ -49,23 +49,23 @@ Prisma を使用して以下のリレーションを構築しています。
 '.env' ファイルを作成し、以下の項目を設定してください。
  env
 # Database (Supabase)
--DATABASE_URL="your_prisma_accelerate_url"
--DIRECT_URL="your_supabase_direct_url"
+- DATABASE_URL="your_prisma_accelerate_url"
+- DIRECT_URL="your_supabase_direct_url"
 
 # Authentication (Google Cloud)
--GOOGLE_CLIENT_ID="your_google_client_id"
--GOOGLE_CLIENT_SECRET="your_google_client_secret"
--NEXTAUTH_SECRET="your_nextauth_secret"
--NEXTAUTH_URL="http://localhost:3000"
+- GOOGLE_CLIENT_ID="your_google_client_id"
+- GOOGLE_CLIENT_SECRET="your_google_client_secret"
+- NEXTAUTH_SECRET="your_nextauth_secret"
+- NEXTAUTH_URL="http://localhost:3000"
 
 # External API (TMDB)
 TMDB_API_READ_ACCESS_TOKEN="your_tmdb_token"
 ---------
 2. インストールと起動
 # bash
--npm install
--npx prisma generate
--npm run dev
+- npm install
+- npx prisma generate
+- npm run dev
 ----------
  開発者
 - 名前: 杉本 淳 (Jun Sugimoto)
